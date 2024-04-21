@@ -8,7 +8,7 @@ fastf1.plotting.setup_mpl()
 
 
 #%%
-def race_laps_comparison(session, list_of_names):
+def laps_comparison_for_session(session, list_of_names):
     plt.figure(figsize=(10, 6))
     for name in list_of_names:
         laps = session.laps.pick_driver(name)

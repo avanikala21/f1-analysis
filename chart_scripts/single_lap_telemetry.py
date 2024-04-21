@@ -8,7 +8,7 @@ fastf1.plotting.setup_mpl()
 
 
 #%%
-def driver_lap_telemetry(session, lap_number, driver_names):
+def drivers_comparison_for_lap(session, lap_number, driver_names):
     circuit_info = session.get_circuit_info()
     v_min, v_max = 0, 0
     for name in driver_names:
