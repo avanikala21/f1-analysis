@@ -13,16 +13,21 @@ session.load(telemetry=True, laps=True, weather=False)
 
 
 #%%
+circuit_info = session.get_circuit_info()
+#%%
 def driver_lap_telemetry(lap_number, driver_names):
     for name in driver_names:
-        telemetry = session.laps.pick_laps(lap_number).pick_driver(name).get_car_data()
+        telemetry = session.laps.pick_laps(lap_number).pick_driver(name).get_car_data().add_distance()
         driver_speed = telemetry['Speed']
-        driver_time = telemetry['Time']
-        plt.plot(driver_time, driver_speed)
+        driver_distance = telemetry['Distance']
+        plt.plot(driver_distance, driver_speed)
+        v_min = driver_speed.min()
+        v_max = driver_speed.max()
+    plt.vlines(x=circuit_info.corners['Distance'], ymin=v_min-20, ymax=v_max+20, linestyles='dotted', colors='grey')
     mplcursors.cursor(hover=True, highlight=True)
     plt.legend(driver_names)
     plt.title(f'Lap {lap_number} Telemetry')
-    plt.xlabel('Lap Time (MM:SS)')
+    plt.xlabel('Distance')
     plt.ylabel('Speed (km/h)')
     plt.show()
 
