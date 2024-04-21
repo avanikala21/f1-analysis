@@ -21,7 +21,7 @@ def plot_chart(list_of_names):
     plt.legend()
     plt.title('Driver lap times')
     plt.xlabel('Lap Number')
-    plt.ylabel('Time (min)')
+    plt.ylabel('Time (MM:SS)')
     plt.ylim([1.5 / (24 * 60), 2 / (24 * 60)])
 
     plt.show()
