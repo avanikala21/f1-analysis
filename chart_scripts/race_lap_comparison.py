@@ -4,15 +4,11 @@ from matplotlib import pyplot as plt
 import mplcursors
 
 matplotlib.use('TkAgg')
+fastf1.plotting.setup_mpl()
+
 
 #%%
-
-fastf1.plotting.setup_mpl()
-session = fastf1.get_session(2024, 'Japan', 'R')
-session.load()
-
-
-def plot_chart(list_of_names):
+def laps_comparison_for_session(session, list_of_names):
     plt.figure(figsize=(10, 6))
     for name in list_of_names:
         laps = session.laps.pick_driver(name)
@@ -25,7 +21,3 @@ def plot_chart(list_of_names):
     plt.ylim([1.5 / (24 * 60), 2 / (24 * 60)])
 
     plt.show()
-
-
-#%%
-plot_chart(['LEC', 'SAI'])
